@@ -1,0 +1,41 @@
+{
+  "manifest_version": 3,
+  "name": "Gerrit UI for GitLab",
+  "version": "1.1.0",
+  "description": "Transforms GitLab Merge Request pages into a faithful PolyGerrit Dark Theme code review interface with patchsets, side-by-side diffs, batched drafts, and keyboard shortcuts.",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Gerrit UI for GitLab",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*/*/merge_requests/*"
+      ],
+      "css": [
+        "gerrit.css"
+      ],
+      "js": [
+        "diff_parser.js",
+        "gitlab_api.js",
+        "gerrit_ui.js",
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

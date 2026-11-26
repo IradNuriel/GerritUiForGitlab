@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Gerrit UI for GitLab</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+    body {
+      width: 310px;
+      margin: 0;
+      padding: 14px;
+      font-family: Roboto, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      color: #e8eaed;
+      background: #202124;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #3c4043;
+    }
+    .logo {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      background: #8ab4f8;
+      color: #202124;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    h1 { margin: 0; font-size: 15px; font-weight: 600; color: #e8eaed; }
+    .field { margin-bottom: 12px; }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+    input[type="checkbox"] {
+      accent-color: #8ab4f8;
+    }
+    label.title {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: #9aa0a6;
+    }
+    input[type="password"], select {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 6px 8px;
+      border: 1px solid #4a4d52;
+      border-radius: 4px;
+      background: #292a2d;
+      color: #e8eaed;
+      font-size: 12.5px;
+    }
+    input[type="password"]:focus, select:focus {
+      outline: 1px solid #8ab4f8;
+      border-color: #8ab4f8;
+    }
+    .hint {
+      font-size: 11px;
+      color: #9aa0a6;
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+    .hint code {
+      background: #35363a;
+      color: #e8eaed;
+      padding: 1px 4px;
+      border-radius: 3px;
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    button {
+      flex: 1;
+      padding: 7px 10px;
+      border-radius: 4px;
+      border: 1px solid #4a4d52;
+      background: #292a2d;
+      color: #e8eaed;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    button.primary {
+      background: #8ab4f8;
+      border-color: #8ab4f8;
+      color: #202124;
+    }
+    button:hover { opacity: 0.9; }
+    #status {
+      margin-top: 8px;
+      font-size: 12px;
+      color: #81c995;
+      min-height: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="logo">G</div>
+    <h1>Gerrit UI for GitLab</h1>
+  </div>
+
+  <div class="field">
+    <label class="checkbox-row">
+      <input type="checkbox" id="autoEnable">
+      <span>Auto-open Gerrit View on Merge Requests</span>
+    </label>
+  </div>
+
+  <div class="field">
+    <label class="title" for="theme">Theme</label>
+    <select id="theme">
+      <option value="dark">PolyGerrit Dark</option>
+      <option value="light">PolyGerrit Light</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label class="title" for="pat">GitLab Personal Access Token (Optional)</label>
+    <input type="password" id="pat" placeholder="glpat-xxxxxxxxxxxxxxxxxxxx">
+    <div class="hint">
+      By default, the extension uses your active GitLab login session. Only add a PAT (<code>api</code> scope) if your GitLab server blocks cookie API auth.
+    </div>
+  </div>
+
+  <div class="actions">
+    <button id="toggleBtn">Toggle Current Tab</button>
+    <button id="saveBtn" class="primary">Save Settings</button>
+  </div>
+
+  <div id="status"></div>
+  <script src="popup.js"></script>
+</body>
+</html>
